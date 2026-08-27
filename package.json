@@ -19,5 +19,8 @@
   "homepage": "https://github.com/CodeForChange853/CS403-IntegrativeProgramming#readme",
   "dependencies": {
     "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
