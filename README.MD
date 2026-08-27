@@ -1,1 +1,1 @@
-Just a few start
+Group 2 Activities goes here!
