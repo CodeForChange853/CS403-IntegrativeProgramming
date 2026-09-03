@@ -63,3 +63,5 @@ app.delete('/students/:id', (req, res) => {
 app.listen(port, () => {
     console.log(`App is listening on port ${port}`);
 });
+
+//Invoke-RestMethod -Uri http://localhost:3000/addStudents -Method Post -ContentType "application/json" -Body '{"name": "Mark", "course": "BSIT"}'
