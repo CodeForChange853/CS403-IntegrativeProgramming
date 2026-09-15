@@ -3,32 +3,19 @@ const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_DATABASE,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
 });
 
-async function pingDatabase() {
-  try {
-    const client = await pool.connect();
-    console.log('Successfully connected to the database.');
-
-    const res = await client.query('SELECT NOW()');
-    console.log('Database Ping Successful. Current time:', res.rows[0].now);
-
-    client.release();
-  } catch (err) {
-    console.error('Failed to connect to the database:', err.stack);
-  } finally {
-    if (require.main === module) {
-      await pool.end();
-    }
+pool.connect((err, client, release) => {
+  if (err) {
+    return console.error("Database connection failed:", err.message);
   }
-}
+  console.log("Connected to PostgreSQL database successfully!");
+  release();
+});
 
-if (require.main === module) {
-  pingDatabase();
-}
-
-module.exports = {
-  pool,
-  pingDatabase
-};
+module.exports = pool;
