@@ -1,3 +1,6 @@
 node_modules/
 .env
 
+test-auth.js
+test-api.js
+test-db.js
